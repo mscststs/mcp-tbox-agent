@@ -1,0 +1,39 @@
+{
+  "name": "@mscststs/mcp-tbox-agent",
+  "version": "1.0.1",
+  "main": "index.js",
+  "bin": {
+    "mcp-tbox-agent": "bin/index.js"
+  },
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --inspect index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mcp",
+    "tbox",
+    "ai",
+    "chat"
+  ],
+  "author": "",
+  "license": "ISC",
+  "description": "Tbox MCP服务器，提供聊天同步调用功能",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.4",
+    "tbox-nodejs-sdk": "^0.0.14",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {},
+  "files": [
+    "chat.js",
+    "index.js",
+    "bin/index.js",
+    "package.json",
+    "README.md"
+  ]
+}
