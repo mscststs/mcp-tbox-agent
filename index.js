@@ -38,6 +38,14 @@ class TboxMcpServer {
                 type: "string",
                 description: "问题或者要求",
               },
+              userId: {
+                type: "string",
+                description: "用户ID（可选）",
+              },
+              conversationId: {
+                type: "string",
+                description: "会话ID（可选）",
+              },
             },
             required: ["query"],
           },
@@ -50,7 +58,7 @@ class TboxMcpServer {
         throw new Error(`Unknown tool: ${request.params.name}`);
       }
 
-      const { query } = request.params.arguments;
+      const { query, userId, conversationId } = request.params.arguments;
 
       const token = process.env.TBOX_AUTHORIZATION_TOKEN;
       const defaultAppId = process.env.TBOX_APP_ID;
@@ -69,6 +77,8 @@ class TboxMcpServer {
           token: token,
           appId: finalAppId,
           query: query,
+          userId: userId,
+          conversationId: conversationId,
         });
 
         return {

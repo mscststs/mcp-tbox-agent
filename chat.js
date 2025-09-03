@@ -8,18 +8,28 @@ const generateUserId = () => {
 
 const userId = generateUserId();
 
-export const chat = async ({ token, appId, query }) => {
+export const chat = async ({
+  token,
+  appId,
+  query,
+  userId: customUserId,
+  conversationId,
+}) => {
   const client = new TboxClient({
     httpClientConfig: {
       authorization: token,
     },
   });
 
+  // 使用传入的userId，如果没有则使用生成的userId
+  const finalUserId = customUserId || userId;
+
   const stream = client.chat(
     {
       appId: appId,
       query: query,
-      userId: userId,
+      userId: finalUserId,
+      ...(conversationId && { conversationId }), // 只在提供conversationId时添加
     },
     {
       sseFormat: true,
